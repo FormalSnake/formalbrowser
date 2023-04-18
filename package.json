@@ -7,8 +7,9 @@
     "start": "electron ."
   },
   "author": "FormalSnake",
+  "repository": "https://github.com/FormalSnake/formalbrowser.git",
   "license": "ISC",
-"build": {
+  "build": {
     "appId": "com.kyandesutter.formalbrowser"
   },
   "devDependencies": {
