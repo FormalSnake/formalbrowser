@@ -4,7 +4,9 @@
   "description": "A simple web browser",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "dist": "electron-builder -m",
+    "postinstall": "electron-builder install-app-deps"
   },
   "author": "FormalSnake",
   "repository": "https://github.com/FormalSnake/formalbrowser.git",
@@ -14,6 +16,11 @@
   },
   "devDependencies": {
     "electron": "^24.1.2",
+    "electron-builder": "^23.6.0",
     "electron-reloader": "^1.2.3"
+  },
+  "dependencies": {
+    "electron-tabs": "^1.0.1",
+    "electron-updater": "^5.3.0"
   }
 }

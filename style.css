@@ -27,12 +27,20 @@ webview {
 .toolbar {
   height: 60px;
   width: 100vw;
-  -webkit-user-select: none;
-  -webkit-app-region: drag;
+  /* -webkit-user-select: none;
+  -webkit-app-region: drag;*/
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  position: fixed;
+  z-index: 50;
+  bottom: -100%;
+  transition: bottom 0.5s ease-in-out;
+}
+
+.toolbar.visible {
+  bottom: 0;
 }
 
 #url-input {
@@ -48,8 +56,9 @@ webview {
   transition: all 0.3s ease;
   margin-left: 5px;
   margin-right: 5px;
-  background-color: rgba(57, 57, 57, 0.3);
+  background-color: rgba(57, 57, 57, 0.5);
   color: white;
+  backdrop-filter: blur(12px);
 }
 
 #url-input:focus {
@@ -87,18 +96,20 @@ button {
   padding: 5px 10px;
   border: none;
   border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0);
+  background-color: rgba(255, 255, 255, 0.1);
   color: white;
   cursor: pointer;
   transition: background-color 0.2s ease;
   margin-left: 5px;
   margin-right: 5px;
+  backdrop-filter: blur(12px);
 }
 
 button[disabled] {
   cursor: default;
   color: #ccc;
-  background-color: #646464;
+  background-color: rgba(100, 100, 100, 0.5);
+  backdrop-filter: blur(12px);
 }
 
 button:not([disabled]):hover {
