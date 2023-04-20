@@ -9,8 +9,8 @@
 }
 
 body {
-  background: linear-gradient(to right, #0575e6, #021b79);
-  color: #FFF;
+  background: linear-gradient(to right, rgb(20, 211, 48), rgb(15, 201, 38));
+  color: #fff;
   font-family: "Noto Sans HK", sans-serif;
 }
 
@@ -24,14 +24,14 @@ main {
   width: 100vw;
   height: 100vh;
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .fas {
   font-size: 1.3rem;
-  color: #FFF;
+  color: #fff;
 }
 
 .ui-toolbar {
@@ -41,7 +41,7 @@ main {
 
 .ui-toolbar a {
   padding: 10px;
-  color: #FFF;
+  color: #fff;
   transition: background linear 0.2s;
 }
 
@@ -67,7 +67,7 @@ main {
 .ui-searchbar h1 {
   margin-bottom: 2rem;
   font-size: 3rem;
-  color: #FFF;
+  color: #fff;
   letter-spacing: 4px;
 }
 
@@ -107,7 +107,7 @@ main {
 }
 
 .ui-topsites-item:hover > .ui-topsite-icon {
-  background: #09F;
+  background: #09f;
 }
 
 .ui-topsites-item-edit {
@@ -132,12 +132,12 @@ main {
   background: rgba(0, 0, 0, 0.3);
   border-radius: 50px;
   pointer-events: none;
-  color: #FFF;
+  color: #fff;
   transition: background ease-in 0.1s;
 }
 
 .ui-topsites-item span {
-  color: #FFF;
+  color: #fff;
   letter-spacing: 2px;
 }
 

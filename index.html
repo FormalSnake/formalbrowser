@@ -14,14 +14,47 @@
     <button id="back-button" disabled><img id="toolbar-img" src="./_icons/arrow-back-outline.svg"></img></button>
     <button id="forward-button" disabled><img id="toolbar-img" src="./_icons/arrow-forward-outline.svg"></button>
     <div class="search">
-      <input id="url-input" type="text" placeholder="Search or enter website URL" />
       <div id="autocomplete"></div>
+
+      <input id="url-input" type="text" placeholder="Search or enter website URL" />
     </div>
     <button id="refresh-button"><img id="toolbar-img" src="./_icons/refresh-outline.svg"></button>
     <button id="home-button"><img id="toolbar-img" src="./_icons/home-outline.svg"></button>
   </div>
   <tab-group new-tab-button="true" sortable="true">
+    <style>
+      .nav.visible {
+        padding-left: 75px !important;
+      }
 
+      .tabs {
+        color: white;
+      }
+
+      .tab {
+        border-radius: 10px 10px 0 0;
+        margin-top: 5px;
+      }
+
+      .nav {
+        padding: 5px;
+      }
+
+      .buttons {
+        margin-top: 5px;
+      }
+
+      :host {
+        --tab-active-background: #292929;
+
+
+        --tab-background: #393939;
+        --tabgroup-background: #191919;
+        --tab-border-color: #191919;
+        --button-hover-background: #393939;
+        --button-hover-color: white;
+      }
+    </style>
   </tab-group>
 
 
@@ -52,38 +85,31 @@
         webviewTag: true,
       },
     });
+    console.log(tabGroup.getActiveTab())
+    let webview = tabGroup.getActiveTab().webview;
 
+    tabGroup.on("tab-active", (tab, tabGroup) => {
+      webview = tabGroup.getActiveTab().webview
+      console.log("Tab active")
+      webview.addEventListener('page-title-updated', () => {
+        const newTitle = webview.getTitle();
+        tabGroup.getActiveTab().setTitle(newTitle);
+      });
 
-    const webview = tab.webview;
-    webview.addEventListener('dom-ready', () => {
-      const wc = webview.getWebContents();
-      const webviewSession = wc.session;
-
-      session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
-        if (details.resourceType === 'image' && details.responseHeaders['content-type'] === 'image/x-icon') {
-          const faviconUrl = details.url;
-          console.log(faviconUrl);
-          // You can do something with the favicon URL here
-        }
-        callback({cancel: false, responseHeaders: details.responseHeaders});
-      }, {urls: ['<all_urls>']});
-
-      wc.loadURL(webview.getURL());
     });
-    webview.addEventListener('page-title-updated', () => {
-      const newTitle = webview.getTitle();
-      tab.setTitle(newTitle);
-    });
+
+
+
     onload = () => {
 
       const loadstart = () => {
-        tab.setTitle("Loading...");
+        tabGroup.getActiveTab().setTitle("Loading...");
 
       };
 
       const loadstop = () => {
         const newTitle = webview.getTitle();
-        tab.setTitle(newTitle);
+        tabGroup.getActiveTab().setTitle(newTitle);
       };
 
       webview.addEventListener("did-start-loading", loadstart);
